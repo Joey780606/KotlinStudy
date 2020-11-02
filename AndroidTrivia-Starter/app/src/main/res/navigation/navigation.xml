@@ -19,21 +19,39 @@
         android:name="com.example.android.navigation.GameFragment"
         android:label="GameFragment"
         tools:layout="@layout/fragment_game" >
+        <!-- 下方註解: popUpTo : GameFragment 跳去 GameOverFragment, 按 back 鍵, back stack 會讓 fragment 跳到 GameFragment 頁    -->
+        <!-- 下方註解: popUpToInclusive : 若為 true, GameFragment 跳去 GameOverFragment, 按 back 鍵, back stack 會清掉包含 GameFragment 以上的頁面    -->
+        <!-- 下方註解: 若 popUpTo 指向程式啟始第一頁, popUpToInclusive 為 true, 按 back 鍵, back stack 會讓使用者離開 app    -->
         <action
             android:id="@+id/action_gameFragment_to_gameOverFragment"
-            app:destination="@id/gameOverFragment" />
+            app:destination="@id/gameOverFragment"
+            app:popUpTo="@id/gameFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_gameFragment_to_gameWonFragment"
-            app:destination="@id/gameWonFragment" />
+            app:destination="@id/gameWonFragment"
+            app:popUpTo="@id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
         android:name="com.example.android.navigation.GameOverFragment"
         android:label="fragment_game_over"
-        tools:layout="@layout/fragment_game_over" />
+        tools:layout="@layout/fragment_game_over" >
+        <action
+            android:id="@+id/action_gameOverFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@id/titleFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/gameWonFragment"
         android:name="com.example.android.navigation.GameWonFragment"
         android:label="fragment_game_won"
-        tools:layout="@layout/fragment_game_won" />  <!-- Ch3-2-4 Step 1-3 -->
+        tools:layout="@layout/fragment_game_won" >
+        <action
+            android:id="@+id/action_gameWonFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@id/titleFragment"
+            app:popUpToInclusive="false" />
+    </fragment>  <!-- Ch3-2-4 Step 1-3 -->
 </navigation>
