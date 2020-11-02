@@ -19,6 +19,8 @@ package com.example.android.navigation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +28,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         @Suppress("UNUSED_VARIABLE")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        // find the navigation controller, myNavHostFragment is in activity_main.xml
+        // 3-2-8 step 1, After step 1 ~ step 3, Up button會顯示,且他的popUp作用,就跟 navigation.xml 的設定一模一樣
+
+        NavigationUI.setupActionBarWithNavController(this, navController)
+        // 3-2-8 step 2
+    }
+
+    // 3-2-8 step 3
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return navController.navigateUp()
     }
 
     // TODO (01) Create the new TitleFragment
