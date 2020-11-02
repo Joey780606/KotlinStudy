@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- id 是關鍵,如果是設 aboutFragment,選擇 menu 的 about 就會去做 navigation.xml 的 aboutFragment 對應的頁面
+      如果把 id 改成 gameWonFragment,選擇 menu 的 about 就會去做 navigation.xml 的 gameWonFragment 對應頁面 做的事 -->
+    <item
+        android:id="@+id/aboutFragment"
+        android:title="@string/about" />
+</menu>
