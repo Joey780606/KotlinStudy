@@ -100,11 +100,13 @@ class GameFragment : Fragment() {
                         binding.invalidateAll()
                     } else {
                         // We've won!  Navigate to the gameWonFragment.
-                        view.findNavController().navigate(R.id.action_gameFragment_to_gameWonFragment) //都答對就會show這個
+                        //view.findNavController().navigate(R.id.action_gameFragment_to_gameWonFragment) //都答對就會show這個
+                        view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment())
                     }
                 } else {
                     // Game over! A wrong answer sends us to the gameOverFragment.
-                    view.findNavController().navigate(R.id.action_gameFragment_to_gameOverFragment) //有一個答錯就會show這個
+                    //view.findNavController().navigate(R.id.action_gameFragment_to_gameOverFragment) //有一個答錯就會show這個
+                    view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment())
                 }
             }
         }
