@@ -33,7 +33,8 @@ class GameOverFragment : Fragment() {
                 inflater, R.layout.fragment_game_over, container, false)
 
         binding.tryAgainButton.setOnClickListener { view: View->
-            view.findNavController().navigate(R.id.action_gameOverFragment_to_gameFragment)
+            //view.findNavController().navigate(R.id.action_gameOverFragment_to_gameFragment)
+            view.findNavController().navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment())  //Ch3.3.4 Step 3
         }
         return binding.root
     }
