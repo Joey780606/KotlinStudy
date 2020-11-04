@@ -22,7 +22,11 @@ Safe args - NavDirection (一旦 gradle 加入了safeargs, Safe args plugin就�
   網址: https://codelabs.developers.google.com/codelabs/kotlin-android-training-start-external-activity/index.html#4
   1. Implicit intent: Android allows you to use intents to navigate to activities that other apps provide.
    (簡例就是如果想拍照,不用知道那些app支援拍照,若有多個app能handle相同的implicit intent,Android就會顯示chooser讓使用者選擇)
+ ==========================
 
+ Ch4-1-6
+ Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-lifecycles-logging/index.html#5
+ 1. 了解fragment的lifecycle
 
  */
 class Readme {
