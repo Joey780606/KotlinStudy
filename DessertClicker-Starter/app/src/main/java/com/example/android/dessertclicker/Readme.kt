@@ -36,5 +36,19 @@ package com.example.android.dessertclicker
   4. FragmentActivity superclass implements LifecycleOwner. 所以 MainActivity 不需做 LifecycleOwner的事
   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-complex-lifecycle/index.html#3
 
-  
+==========
+4-2-5
+  1. 前言:Shutdown的機制
+  2. Step 1: 如何在 Android studio 的 Terminal tab中執行 adb
+    adb shell am kill com.example.android.dessertclicker
+      - 刪除app, com.example.android.dessertclicker 是 package name (但在 ubuntu 上發現實作失敗,不確定是否是版本問題)
+  3. Step 2: Use onSaveInstanceState() to save bundle data
+    在 Activity stopped時會執行 onSaveInstanceState()
+  4. Step 2-4: Bundle的介紹, 很重要
+    精華: a. A bundle is a collection of key-value pairs, where the keys are always strings. You can put primitive values, such as int and boolean values, into the bundle.
+    b. Because the system keeps this bundle in RAM, it's a best practice to keep the data in the bundle small.
+    c. Generally you should store far less than 100k, otherwise you risk crashing your app with the TransactionTooLargeException error.
+  5. Step 3 教導如何用 onCreate()來判斷app是 第一次開,或是重新啟動
+
+  Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-complex-lifecycle/index.html#4
  */
