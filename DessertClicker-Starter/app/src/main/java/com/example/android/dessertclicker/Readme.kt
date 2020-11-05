@@ -24,4 +24,17 @@ package com.example.android.dessertclicker
   2. Step 2-4 有 Processes and threads的link,有空可以看
   3. Step 2-10略提到 leak的問題
   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-complex-lifecycle/index.html#2
+
+==========
+4-2-4
+  1. lifecycle library, which is part of Android Jetpack, simplifies this task
+  2. Three main parts of the lifecycle library:
+    a. Lifecycle owners, which are the components that have (and thus "own") a lifecycle. Activity and Fragment are lifecycle owners. Lifecycle owners implement the LifecycleOwner interface.
+    b. The Lifecycle class, which holds the actual state of a lifecycle owner and triggers events when lifecycle changes happen.
+    c. Lifecycle observers, which observe the lifecycle state and perform tasks when the lifecycle changes. Lifecycle observers implement the LifecycleObserver interface.
+  3. 將 DessertTimer 設成 LifecycleObserver (Ch 4.2.4 - Step 1) (文件描述重要)
+  4. FragmentActivity superclass implements LifecycleOwner. 所以 MainActivity 不需做 LifecycleOwner的事
+  Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-complex-lifecycle/index.html#3
+
+  
  */
