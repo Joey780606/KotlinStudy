@@ -51,4 +51,13 @@ package com.example.android.dessertclicker
   5. Step 3 教導如何用 onCreate()來判斷app是 第一次開,或是重新啟動
 
   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-complex-lifecycle/index.html#4
+
+=========
+Ch4-2-6
+  1. Configuration change (螢幕轉向,切換語言等)會讓
+  2. A configuration change happens when the state of the device changes so radically that the easiest way for the system to resolve the change
+     is to completely shut down and rebuild the activity.(像這時會重建activity,表示邏輯確實不能加在activity裡)
+  此段只有教學,程式沒有改變
+
+  Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-complex-lifecycle/index.html#5
  */
