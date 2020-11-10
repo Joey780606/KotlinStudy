@@ -58,4 +58,14 @@ class Readme {
       在 gameFinished() 函式 使用 NavHostFragment 等來跳頁
 
    Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-view-model/#6
+
+   ==============
+   Ch5-1-8 Use a ViewModelFactory
+   1. factory method pattern
+     The factory method pattern is a creational design pattern that uses factory methods to create objects. A factory method is a method that returns an instance of the same class.
+   2. 步驟4 - Under the score package, create another Kotlin class called ScoreViewModelFactory. This class will be responsible for instantiating the ScoreViewModel object.
+   3. ViewModelProvider.Factory 的相關處理
+      這節比較難,要花時間多研究
+
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-view-model/#7
  */
