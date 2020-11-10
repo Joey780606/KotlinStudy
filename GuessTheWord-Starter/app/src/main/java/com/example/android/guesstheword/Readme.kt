@@ -49,4 +49,13 @@ class Readme {
    3. 把 UI 的資料轉到 GameViewModel 的 init block. because you should reset the word list when the ViewModel is created, not every time the fragment is created.
 
    Reference code: https://codelabs.developers.google.com/codelabs/kotlin-android-training-view-model/#5
+
+   ==============
+   Ch5-1-7 Implement click listener for the End Game button
+
+   1. 對 "End Game" button實行click listener.
+   2. 在第3項,使用 Safe Args. (可回頭參考 Ch3-3-3)
+      在 gameFinished() 函式 使用 NavHostFragment 等來跳頁
+
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-view-model/#6
  */
