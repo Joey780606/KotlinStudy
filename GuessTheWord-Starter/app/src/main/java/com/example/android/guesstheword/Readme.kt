@@ -36,4 +36,17 @@ class Readme {
         在 onCreateView() 來 initialize viewModel
 
    Reference code: https://codelabs.developers.google.com/codelabs/kotlin-android-training-view-model/#4
+
+   ==============
+   Ch5-1-6 Populate the GameViewModel
+
+   1. ViewModel 的特性再介紹
+   2. 把資料從 GameFragment 移到 GameViewModel
+    GameFragmentBinding - Do not move the binding variable, GameFragmentBinding, because it contains references to the views. This variable is used to :
+      a. inflate the layout,
+      b. set up the click listeners,
+      c. display the data on the screen—responsibilities of the fragment
+   3. 把 UI 的資料轉到 GameViewModel 的 init block. because you should reset the word list when the ViewModel is created, not every time the fragment is created.
+
+   Reference code: https://codelabs.developers.google.com/codelabs/kotlin-android-training-view-model/#5
  */
