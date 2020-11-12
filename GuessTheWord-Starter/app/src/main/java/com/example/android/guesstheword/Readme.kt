@@ -102,4 +102,14 @@ class Readme {
 
    關鍵字: viewLifecycleOwner, observe, Observer
    Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#4
+   ===============
+   Ch5-2-6 Encapsulate the LiveData
+   1. Encapsulation
+   2. MutableLiveData(可改變) 和 LiveData(可讀,但不可改變) 的差異
+   3. backing property
+   避免 score, word 直接被任何程式使用,所以使用backing property的方式,將變數封裝起來,讓別的程式只能使用get的方式存取
+
+   關鍵字 : ViewModel, MutableLiveData, LiveData, backing property
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#5
+
  */
