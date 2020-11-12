@@ -68,4 +68,31 @@ class Readme {
       這節比較難,要花時間多研究
 
    Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-view-model/#7
+
+   ==============
+   Ch5-2-1 LiveData and LiveData observers (Welcome)
+   Learn how to integrate LiveData with the data in the ViewModel classes.
+     a. LiveData, which is one of the Android Architecture Components, lets you build data objects that notify views when the underlying database changes.
+     b. Use the LiveData class, you set up "observers" (for example, activities or fragments) that observe changes in the app's data.
+   關鍵字: LiveData, MutableLiveData
+
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#0
+   ==============
+   Ch5-2-2 無重點
+   ==============
+   Ch5-2-3 無重點
+   ==============
+   Ch5-2-4 Add LiveData to the GameViewModel
+   1. 深入介紹LiveData
+     LifecycleOwner (LiveData 觀察者 與 LifecycleOwner (通常是Activity or Fragment)結合. LiveData 只會在 observer是 STARTED 或 RESUMED 時更新資料
+
+   2. 會做的事:
+     a. How to wrap any data type into LiveData objects by converting the current score and current word data in the GameViewModel to LiveData. (用 MutableLiveData,看來是這節會做的事)
+     b. Add an observer to these LiveData objects and learn how to observe the LiveData.
+
+   3. MutableLiveData
+     MutableLiveData is a LiveData whose value can be changed. MutableLiveData is a generic class, so you need to specify the type of data that it holds.
+
+   關鍵字: LifecycleOwner, MutableLiveData, LiveData
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#3
  */
