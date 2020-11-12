@@ -95,4 +95,11 @@ class Readme {
 
    關鍵字: LifecycleOwner, MutableLiveData, LiveData
    Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#3
+   ==============
+   Ch5-2-5 Attach observers to the LiveData objects
+   1. viewLifecycleOwner的介紹 (有介紹,很重要)
+   2. 建立 observe 的函式,內有 Observer 的參數
+
+   關鍵字: viewLifecycleOwner, observe, Observer
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#4
  */
