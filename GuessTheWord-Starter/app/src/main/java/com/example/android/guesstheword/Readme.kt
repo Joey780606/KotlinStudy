@@ -131,4 +131,10 @@ class Readme {
    1. 對 ScoreViewModel 的 LiveData 進行調整, 將相關參數改成 LiveData來處理
 
    Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#7
+
+   ===============
+   Ch5-2-9 Add the play again button
+   1. 在 score fragment加入一個Play again button,利用 LiveData 再加一個判斷 Play again的處理
+
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#8
  */
