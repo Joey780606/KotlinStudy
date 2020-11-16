@@ -124,5 +124,11 @@ class Readme {
    6. 如果螢幕轉向等from inactive to active狀態,要記得將相關的變數再還原一次,避免相關的處理會再出現一次
 
    Keyword: Design pattern, backing property, observe
-   Website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#6
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#6
+
+   ===============
+   Ch5-2-8 Add LiveData to the ScoreViewModel
+   1. 對 ScoreViewModel 的 LiveData 進行調整, 將相關參數改成 LiveData來處理
+
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#7
  */
