@@ -112,4 +112,17 @@ class Readme {
    關鍵字 : ViewModel, MutableLiveData, LiveData, backing property
    Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#5
 
+   ================
+   Ch5-2-7 Add a game-finished event
+   1. 希望全部猜完後,會直接跳到Game finished那頁
+   2. You use the LiveData observer pattern to model a game-finished event.
+   3. Observer pettern的說明 an observable (the "subject" of observation) and observers.
+   4. In the case of LiveData in this app, the observable (subject) is the LiveData object, and the observers are the methods in the UI controllers, such as fragments.
+
+   Step 2
+   5. LiveData delivers updates to the observers only when data changes. An exception to this behavior is that observers also receive updates when the observer changes from an inactive to an active state. (如果螢幕轉向,就屬於from an inactive to an active state. 這時LiveData就會再傳送update到 observers 目前狀態一次)
+   6. 如果螢幕轉向等from inactive to active狀態,要記得將相關的變數再還原一次,避免相關的處理會再出現一次
+
+   Keyword: Design pattern, backing property, observe
+   Website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#6
  */

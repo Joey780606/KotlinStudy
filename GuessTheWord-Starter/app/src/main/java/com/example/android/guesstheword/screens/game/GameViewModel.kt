@@ -19,6 +19,11 @@ class GameViewModel : ViewModel() {
     // The list of words - the front of the list is the next word to guess, move from GameFragment.kt
     private lateinit var wordList: MutableList<String>
 
+    // Hold the game-finished event
+    private val _eventGameFinish = MutableLiveData<Boolean>()
+    val eventGameFinish: LiveData<Boolean>
+       get() = _eventGameFinish
+
     init {
         resetList()  // move from GameFragment.kt
         nextWord()   // move from GameFragment.kt
@@ -68,7 +73,9 @@ class GameViewModel : ViewModel() {
      * Moves to the next word in the list
      */
     private fun nextWord() { // move from GameFragment.kt
-        if (!wordList.isEmpty()) {
+        if(wordList.isEmpty()) {
+            onGameFinish()
+        } else {
             //Select and remove a word from the list
             _word.value = wordList.removeAt(0)
         }
@@ -84,5 +91,15 @@ class GameViewModel : ViewModel() {
     public fun onCorrect() {
         _score.value = (score.value)?.plus(1)
         nextWord()
+    }
+
+    /** Method for the game completed event **/
+    fun onGameFinish() {
+        _eventGameFinish.value = true
+    }
+
+    /** Method for the game completed event , for Ch5-2-7 Step 2**/
+    fun onGameFinishComplete() {
+        _eventGameFinish.value = false
     }
 }
