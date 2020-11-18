@@ -137,4 +137,15 @@ class Readme {
    1. 在 score fragment加入一個Play again button,利用 LiveData 再加一個判斷 Play again的處理
 
    Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#8
+
+   ===============
+   5-3-1 Welcome
+   1. After you integrate data binding with the ViewModel objects, you no longer need click handlers in the app's fragments, so you remove them. (意指不用再要Fragment的click handler了?)
+   2. 上期學到了 ViewModel 和 LiveData
+   3. 這期要學 Data bind library
+   4. What you'll do 這二點重要
+   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data-data-binding#0
+
+   5-3-2 App overview (無重點)
+   5-3-3 Get started (只是把之前的範例再拿出來介紹一下,無重點)
  */
