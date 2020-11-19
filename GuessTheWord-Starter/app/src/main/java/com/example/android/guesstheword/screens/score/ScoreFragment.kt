@@ -50,7 +50,6 @@ class ScoreFragment : Fragment() {
                 false
         )
 
-        binding.playAgainButton.setOnClickListener { viewModel.onPlayAgain() }
         viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments!!).score)
 
         //ViewModelProvider.get() method, pass in the associated score fragment context and viewModelFactory.
@@ -67,6 +66,7 @@ class ScoreFragment : Fragment() {
                 viewModel.onPlayAgainComplete()
             }
         })
+        binding.scoreViewModel = viewModel
 
         return binding.root
     }

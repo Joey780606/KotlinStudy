@@ -65,26 +65,10 @@ class GameFragment : Fragment() {
             if (hasFinished) gameFinished()
         })
 
-        binding.correctButton.setOnClickListener { onCorrect() }
-        binding.skipButton.setOnClickListener { onSkip() }
-        binding.endGameButton.setOnClickListener { onEndGame() }
+        binding.gameViewModel = viewModel   // Ch5.3.4 Step 1-2
 
         return binding.root
 
-    }
-
-    /** Methods for button click handlers **/
-
-    private fun onSkip() {
-        viewModel.onSkip()
-    }
-
-    private fun onCorrect() {
-        viewModel.onCorrect()
-    }
-
-    private fun onEndGame() {
-        gameFinished()
     }
 
     private fun gameFinished() {

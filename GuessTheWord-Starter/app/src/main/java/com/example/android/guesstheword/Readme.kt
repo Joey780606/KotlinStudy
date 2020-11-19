@@ -139,13 +139,36 @@ class Readme {
    Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data#8
 
    ===============
-   5-3-1 Welcome
+   Ch 5-3-1 Welcome
    1. After you integrate data binding with the ViewModel objects, you no longer need click handlers in the app's fragments, so you remove them. (意指不用再要Fragment的click handler了?)
    2. 上期學到了 ViewModel 和 LiveData
    3. 這期要學 Data bind library
    4. What you'll do 這二點重要
    Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data-data-binding#0
 
-   5-3-2 App overview (無重點)
-   5-3-3 Get started (只是把之前的範例再拿出來介紹一下,無重點)
+   Ch 5-3-2 App overview (無重點)
+   Ch 5-3-3 Get started (只是把之前的範例再拿出來介紹一下,無重點)
+
+   ===============
+   Ch 5-3-4 Add ViewModel data binding
+   1.之前學的, you used data binding as a type-safe way to access the views in the GuessTheWord app.
+   Data binding 真正的力量 is in doing what the name suggests: binding data directly to the view objects in your app.
+
+   2.之前的處理是 (網站上有圖)
+    a. UI view 是 xml layout
+    b. UI Controller (像activity/fragment, 在裡面建立 click listener
+    c. 真實儲存資料(ex:分數)存在 ViewModel 裡
+    缺點是: The Button view and the GameViewModel don't communicate directly
+
+   3.較好的方式是 (網站上有圖)
+    Button view 和 ViewModel 直接溝通 (這章就是要做這件事)
+
+   4. Step 1, 在 UI view 建一變數, 然後在 UI Controller 對該變數進行設定
+   Step 2, Listener bindings : are binding expressions that run when events such as onClick(), onZoomIn(), or onZoomOut() are triggered. Listener bindings are written as lambda expressions.
+    簡單來說,利用 Listener bindings , 在 UI view 直接建立 android:onClick,指向 onGameFinish()
+
+   5. Troubleshooting data-binding error messages
+    Data binding的錯誤比較不好找,所以有教導一些偵測的方式
+
+  Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data-data-binding#3
  */
