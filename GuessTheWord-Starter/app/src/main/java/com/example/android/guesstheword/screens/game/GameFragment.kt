@@ -52,13 +52,13 @@ class GameFragment : Fragment() {
 
         Log.i("GameFragment", "Called ViewModelProvider.get")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
+        //viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+        //    binding.scoreText.text = newScore.toString()
+        //})
 
-        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
-            binding.wordText.text = newWord
-        })
+        //viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
+        //    binding.wordText.text = newWord
+        //})
 
         // Observer for the Game finished event, eventGameFinish variable is in GameViewModel.kt
         viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer<Boolean> { hasFinished  ->
@@ -66,6 +66,10 @@ class GameFragment : Fragment() {
         })
 
         binding.gameViewModel = viewModel   // Ch5.3.4 Step 1-2
+
+        // Specify the fragment view as the lifecycle owner of the binding.
+        // This is used so that the binding can observe LiveData updates
+        binding.lifecycleOwner = viewLifecycleOwner // Ch5.3.5 Step 1-2
 
         return binding.root
 

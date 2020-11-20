@@ -171,4 +171,13 @@ class Readme {
     Data binding的錯誤比較不好找,所以有教導一些偵測的方式
 
   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data-data-binding#3
+
+  =========
+  Ch 5-3-5 Add LiveData to data binding
+  1. 此 task的工作,使用 LiveData為 data-binding source, 來通知UI 資料相關的變化,而非使用 LiveData observer method
+  2. Step 3是把 string format 與 data binding 結合
+  3. Step 1和2 比較不懂的是 binding.lifecycleOwner = viewLifecycleOwner
+
+  Keyword: Data binding, LiveData, ViewModel
+  Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data-data-binding#4
  */
