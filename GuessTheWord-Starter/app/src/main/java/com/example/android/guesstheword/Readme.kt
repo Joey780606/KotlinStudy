@@ -180,4 +180,21 @@ class Readme {
 
   Keyword: Data binding, LiveData, ViewModel
   Reference website: https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data-data-binding#4
+
+  =========
+  Ch 5-4-1 Welcome
+  You can transform LiveData using the helper methods in the Transformations class (本章重點)
+    Transformations.map
+    Transformations.switchMap
+  說明: When passing LiveData between the components, sometimes you might want to map or transform the data. Your code might need to perform calculations, display only a subset of the data, or change the rendition of the data. For example, for the word LiveData, you could create a transformation that returns the number of letters in the word rather than the word itself.
+
+  Reference website: https://developer.android.com/codelabs/kotlin-android-training-live-data-transformations#0
+
+  Ch 5-4-2 App overview
+  Ch 5-4-3 Task: Get started
+  Ch 5-4-4 Add a timer
+    1. 在 GameViewModel.kt 加上 CountDownTimer 計數器的處理
+
+  Reference website: https://developer.android.com/codelabs/kotlin-android-training-live-data-transformations#3
+
  */
