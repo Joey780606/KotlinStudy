@@ -197,4 +197,10 @@ class Readme {
 
   Reference website: https://developer.android.com/codelabs/kotlin-android-training-live-data-transformations#3
 
+  =========
+  Ch5-4-5 Add transformation for the LiveData
+  1. The Transformations.map() method provides a way to perform data manipulations on the source LiveData and return a result LiveData object. These transformations aren't calculated unless an observer is observing the returned LiveData object.
+  2. In this task, you format the elapsed time LiveData object into a new string LiveData object in "MM:SS" format. You also display the formatted elapsed time on the screen.
+
+  Reference website: https://developer.android.com/codelabs/kotlin-android-training-live-data-transformations#4
  */
