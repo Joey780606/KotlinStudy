@@ -19,6 +19,17 @@ Ch6-1-3 Task: Download and inspect the starter app
  1.照做把app copy進來
  2.Step 2 Inspect the startup app 重要,如果 "Android" 該頁看不到相關的資料,可以切到 "Project" 來看,就可以找的到
 
- Reference website: https://developer.android.com/codelabs/kotlin-android-training-room-database#1
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-room-database#2
+
+============
+Ch6-1-4 Create the SleepNight entity
+ 1. 在 database 需要 entities 和 queries.
+  相關介紹在文件有寫
+  You must define each entity as an annotated data class, and the interactions as an annotated interface,
+  a data access object (DAO). Room uses these annotated classes to create tables in the database, and queries that act on the database.
+
+ 2. 實際在 database package 裡的 SleepNight 來新增 Table
+
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-room-database#3
      */
 }
