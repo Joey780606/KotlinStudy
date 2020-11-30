@@ -31,5 +31,19 @@ Ch6-1-4 Create the SleepNight entity
  2. 實際在 database package 裡的 SleepNight 來新增 Table
 
  Reference website: https://developer.android.com/codelabs/kotlin-android-training-room-database#3
+
+============
+Ch6-1-5 Create the DAO
+ 1. DAO (Data access object) - On Android, the DAO provides convenience methods for inserting, deleting, and updating the database.
+ 2. Think of a DAO as defining a custom interface for accessing your database.
+ 3. Room library provides convenience annotations, such as @Insert, @Delete, and @Update. For everything else, there is the @Query annotation.
+ 4. Step 1: SleepDatabaseDao 這個DAO 是一個 interface
+ 5. 用到的 annotation
+  @Dao (Step 1-2)
+  @Insert (Step 1-3)
+  @Update (Step 1-4)
+  @Query (Step 1-5 ~ 1-9) 各種不同的Query範例
+
+  Reference website: https://developer.android.com/codelabs/kotlin-android-training-room-database#4
      */
 }
