@@ -45,5 +45,27 @@ Ch6-1-5 Create the DAO
   @Query (Step 1-5 ~ 1-9) 各種不同的Query範例
 
   Reference website: https://developer.android.com/codelabs/kotlin-android-training-room-database#4
+
+=============
+Ch6-1-6 Create and test a room database
+    文章說這是 Database 的參考範本,要多學起來
+    1. In this task, you create a Room database that uses the Entity and DAO that you created in the previous task.
+    2. 使用到的annotation: @Database
+    3. 專有名詞: database holder, singleton
+    4. Create a public abstract class that extends RoomDatabase. This class is to act as a database holder. The class is abstract, because Room creates the implementation for you.
+
+    Step 2是unit test範例
+    1. SleepDatabaseTest是 test class
+    2. @RunWith - 定義 test runner, 是設定和執行 tests的程式
+    3. @Before - 建立一個記憶體內的 SleepDatabase 和 SleepDatabaseDao
+      In-memory 表示 database 不是存在 file system且在test執行後被刪除
+    4. allowMainThreadQueries - 允許你執行在main thread執行 test
+    5. @Test - 建立,插入,存取 SleepNight, assert(宣稱)他們是一樣的,
+       若有錯會傳出 exception,在實例中,你可能會有多個@Test
+    6. @After ,Testing結束後,用來執行關閉資料庫
+    7. 測試方式重要,參Step 2的4,5
+
+    Reference website: https://developer.android.com/codelabs/kotlin-android-training-room-database#5
      */
+
 }
