@@ -66,6 +66,20 @@ Ch6-1-6 Create and test a room database
     7. 測試方式重要,參Step 2的4,5
 
     Reference website: https://developer.android.com/codelabs/kotlin-android-training-room-database#5
+
+=============
+Ch6-2-3 Task: Inspect the starter code
+    1. 注意 activity_main.xml, 它包含 nav_host_fragment, 也注意 <merge>
+      The merge tag can be used to eliminate(消除) redundant layouts when including layouts, and it's a good idea to use it. An example of a redundant layout would be ConstraintLayout > LinearLayout > TextView, where the system might be able to eliminate the LinearLayout. This kind of optimization can simplify the view hierarchy and improve app performance
+    2. 注意 fragment_sleep_tracker.xml (依文章指示)
+
+    Refererence website: https://developer.android.com/codelabs/kotlin-android-training-coroutines-and-room#2
+
+Ch6-2-4 Add a ViewModel
+    1. you need to collect data, add the data to the database, and display the data. All this work is done in the view model. (所在的整段都很重要)
+    2. ViewModel 的實作過程,很重要
+
+    Refererence website: https://developer.android.com/codelabs/kotlin-android-training-coroutines-and-room#3
      */
 
 }

@@ -26,5 +26,6 @@ import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 class SleepTrackerViewModel(
         val database: SleepDatabaseDao,
         application: Application) : AndroidViewModel(application) {
+    // Ch6.2.4 Step 1 - 繼承 AndroidViewModel, 使用 application context為 constructor 參數
 }
 
