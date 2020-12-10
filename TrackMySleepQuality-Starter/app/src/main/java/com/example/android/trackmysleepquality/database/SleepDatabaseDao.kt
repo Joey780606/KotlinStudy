@@ -25,19 +25,19 @@ import androidx.room.Update
 @Dao
 interface SleepDatabaseDao {
     @Insert
-    fun insert(night: SleepNight)
+    suspend fun insert(night: SleepNight)   //Ch 6-2-6 Step 1, 但 suspend 的用法可看 Ch 6-2-5 Coroutines 的介紹,他會suspends 這件事,直到收到回應,其他活動仍可處理
 
     @Update
-    fun update(night: SleepNight)
+    suspend fun update(night: SleepNight)
 
     @Query("SELECT * from daily_sleep_quality_table WHERE nightId = :key")
-    fun get(key: Long): SleepNight?  // This is wrong status, need a parameter
+    suspend fun get(key: Long): SleepNight?  // This is wrong status, need a parameter
 
     @Query("DELETE FROM daily_sleep_quality_table")
-    fun clear()
+    suspend fun clear()
 
     @Query("SELECT * FROM daily_sleep_quality_table ORDER BY nightId DESC LIMIT 1")
-    fun getTonight(): SleepNight?
+    suspend fun getTonight(): SleepNight?
 
     @Query("SELECT * FROM daily_sleep_quality_table ORDER BY nightId DESC")
     fun getAllNights(): LiveData<List<SleepNight>>
