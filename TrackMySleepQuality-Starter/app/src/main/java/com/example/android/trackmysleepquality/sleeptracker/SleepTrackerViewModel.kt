@@ -18,10 +18,7 @@ package com.example.android.trackmysleepquality.sleeptracker
 
 import android.app.Application
 import android.provider.SyncStateContract.Helpers.update
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
 import com.example.android.trackmysleepquality.formatNights
@@ -36,10 +33,18 @@ class SleepTrackerViewModel(
     // Ch6.2.4 Step 1 - 繼承 AndroidViewModel, 使用 application context為 constructor 參數
 
     private var tonight = MutableLiveData<SleepNight?>()  //Ch6-2-6 Step 2-4
-    private val nights = database.getAllNights()    // Ch6-2-6 Step 4-4
 
+    private val nights = database.getAllNights()    // Ch6-2-6 Step 4-4
     val nightsString = Transformations.map(nights) { nights ->  //Ch 6-2-6 Step 4-5
         formatNights(nights, application.resources)
+    }
+
+    private val _navigateToSleepQuality = MutableLiveData<SleepNight>()     // Ch6-3-3 Step 2-2
+    val navigateToSleepQuality: LiveData<SleepNight>
+      get() = _navigateToSleepQuality
+
+    fun doneNavigating() {
+        _navigateToSleepQuality.value = null
     }
 
     init {  //Ch6-2-6 Step 2-5
@@ -66,6 +71,7 @@ class SleepTrackerViewModel(
             val oldNight = tonight.value ?: return@launch
             oldNight.endTimeMilli = System.currentTimeMillis()
             update(oldNight)
+            _navigateToSleepQuality.value = oldNight  // Ch6-3-3 Step 2-4
         }
     }
 

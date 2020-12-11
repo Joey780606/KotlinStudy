@@ -126,6 +126,22 @@ Ch 6-2-6 Collect and display the data
       a. return@label 指定要針對那個 function 做 return 的回傳
 
     Reference website: https://developer.android.com/codelabs/kotlin-android-training-coroutines-and-room#5
+
+Ch6-3-1 Welcome
+    1.再提到了safeArgs需熟悉
+    2.LiveData, Room, DAO, coroutines要熟悉
+
+Ch6-3-2 App overview
+    無重點
+
+Ch6-3-3 Add navigation
+    Step 1-2. 介紹 SleepQualityFragment 的功能
+    Step 1-4. 介紹 navigation.xml 的 <argument> 參數
+
+    Step 2 重要,照著作
+
+    Reference website: https://developer.android.com/codelabs/kotlin-android-training-quality-and-states#2
+
      */
 
 }
