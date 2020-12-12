@@ -22,7 +22,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.android.trackmysleepquality.R
+import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.databinding.FragmentSleepQualityBinding
 
 /**
@@ -47,6 +51,28 @@ class SleepQualityFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
+        //Ch6-3-4 Step 2-2,但依AS建議調整了一下
+        val arguments = SleepQualityFragmentArgs.fromBundle(requireArguments())
+
+        //Ch6-3-4 Step 2-3
+        val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
+
+        //Ch6-3-4 Step 2-4
+        val viewModelFactory = SleepQualityViewModelFactory(arguments.sleepNightKey, dataSource)
+
+        //Ch6-3-5 Step 2-5
+        val sleepQualityViewModel = ViewModelProvider(this, viewModelFactory).get(SleepQualityViewModel::class.java)
+
+        //Ch6-3-5 Step 2-6 sleepQualityViewModel會是紅字,之後會在 fragment_sleep_quality.xml 加入
+        binding.sleepQualityViewModel = sleepQualityViewModel
+
+        //Ch6-3-7 Step 2-7
+        sleepQualityViewModel.navigateToSleepTracker.observe(this, Observer {
+            if(it == true) {
+                this.findNavController().navigate(
+                    SleepQualityFragmentDirections.actionSleepQualityFragmentToSleepTrackerFragment())
+            }
+        })
         return binding.root
     }
 }
