@@ -65,6 +65,18 @@ class SleepTrackerFragment : Fragment() {
                 ViewModelProvider(
                         this, viewModelFactory).get(SleepTrackerViewModel::class.java)
 
+        val adapter = SleepNightAdapter()
+        // Ch7-1-4 Step 4-2 - RecyclerView 需知道關於用來取得view holders的adapter
+
+        binding.sleepList.adapter = adapter
+        // Ch7-1-4 Step 4-3 - Associate the adapter with the RecyclerView
+
+        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        }) // Ch7-1-4 Step 5-7, 5-8 - Associate the adapter with the RecyclerView
+
         // To use the View Model with data binding, you have to explicitly
         // give the binding object a reference to it.
         binding.sleepTrackerViewModel = sleepTrackerViewModel
@@ -106,6 +118,7 @@ class SleepTrackerFragment : Fragment() {
                 sleepTrackerViewModel.doneNavigating()
             }
         })
+
         return binding.root
     }
 }
