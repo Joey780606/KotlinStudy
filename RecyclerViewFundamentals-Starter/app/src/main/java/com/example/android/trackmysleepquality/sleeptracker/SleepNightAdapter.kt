@@ -1,15 +1,20 @@
 package com.example.android.trackmysleepquality.sleeptracker
 
 import android.graphics.Color
+import android.text.Layout
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.TextItemViewHolder
+import com.example.android.trackmysleepquality.convertDurationToFormatted
+import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
 
-class SleepNightAdapter: RecyclerView.Adapter<TextItemViewHolder>()  {  // Ch7-1-4 Step 3-2
+class SleepNightAdapter: RecyclerView.Adapter<SleepNightAdapter.ViewHolder>()  {  // Ch7-1-5 Step 3-1
     var data = listOf<SleepNight>()  // Ch7-1-4 Step 3-3
       set(value) {
           field = value
@@ -20,36 +25,33 @@ class SleepNightAdapter: RecyclerView.Adapter<TextItemViewHolder>()  {  // Ch7-1
       // 當顯示的資料被改變時,為了告訴 RecyclerView, 在上面加入一個自訂的setter到 data變數
       // 在 setter, 給 data一個新值,然後呼叫 notifyDataSetChanged() 來觸發和新data 重畫list
 
-
-    override fun getItemCount() = data.size  // Ch7-1-4 Step 3-4
-    override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
-        // Ch7-1-4 Step 3-5, 3-6
-        val item = data[position]
-        holder.textView.text = item.sleepQuality.toString()
-        // Ch7-1-4 Step 3-7, this simple example lets you see how the adapter gets the data into the view holder and onto the screen.
-
-        if(item.sleepQuality <= 1) {
-            holder.textView.setTextColor(Color.RED)  // Ch7-1-4 Step 6-4, 但因為reuse的關係,會出現不應該的值也出現紅色
-        } else {
-            holder.textView.setTextColor(Color.BLACK) // Ch7-1-4 Step 6-5, 即上方的改善方案
-        }
+    // Ch7-1-5 Step 2 (較怪的是不需指定 list_item_sleep_night.xml)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
+        val quality: TextView = itemView.findViewById(R.id.quality_string)
+        val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
-        // Ch7-1-4 Step 3-8, 有二參數,回傳 ViewHolder
-        // parent - 是 擁有(holds) view holder的view group.永遠都是 RecyclerView.
-        // viewType - 當在相同 RecyclerView 裡有多個views
-        // ex: 若你在相同的 RecyclerView 放了一個 text views, 一個 image, 一個video的list, 此函式將需要知道什麼型態的view被使用.
+    override fun getItemCount() = data.size  // Ch7-1-4 Step 3-4
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) { // Ch7-1-5 Step 3-6 ~ Step 3-9
+        val item = data[position]
+        val res = holder.itemView.context.resources
+        holder.sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
+        holder.quality.text = convertNumericQualityToString(item.sleepQuality, res) // Ch7-1-5 Step 3-11
+        holder.qualityImage.setImageResource(when (item.sleepQuality) {  // Ch7-1-5 Step 3-13
+            0 -> R.drawable.ic_sleep_0
+            1 -> R.drawable.ic_sleep_1
+            2 -> R.drawable.ic_sleep_2
+            3 -> R.drawable.ic_sleep_3
+            4 -> R.drawable.ic_sleep_4
+            5 -> R.drawable.ic_sleep_5
+            else -> R.drawable.ic_sleep_active
+        })
+    }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder { //Ch7-1-5 Step 3-2 ~ 3-5 建立item的layout
         val layoutInflater = LayoutInflater.from(parent.context)
-        // Ch7-1-4 Step 3-9, layout inflater知道如何從XML layouts建立views.
-        // context 含有如何正確的inflate(浮出) view. 在 recycler view的adapter, 你總是傳送 parent view group (即RecyclerView) 的context
-
-        val view = layoutInflater.inflate(R.layout.text_item_view, parent, false) as TextView
-        // Ch7-1-4 Step 3-10,
-        // 為 view 傳送 XML layout, 和 view 的 view group - parent變數,
-        // Boolean變數 attachToRoot 需要為 false, 因為 RecyclerView 會在需要時為你加入此 item.
-
-        return TextItemViewHolder(view)  // Ch7-1-4 Step 3-11, 回傳由 view 製造出來的 TextItemViewHolder
+        val view = layoutInflater.inflate(R.layout.list_item_sleep_night, parent, false)
+        return ViewHolder(view)
     }
 }

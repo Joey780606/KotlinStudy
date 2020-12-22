@@ -51,5 +51,15 @@ Ch7-1-4 Implement RecyclerView and an Adapter
    Because these view holders are recycled, make sure onBindViewHolder() sets or resets any customizations that previous items might have set on a view holder.
 
  Reference website: https://developer.android.com/codelabs/kotlin-android-training-recyclerview-fundamentals#3
+
+Ch7-1-5 Create a ViewHolder for all the sleep data
+ 1. ViewHolder的功能: A ViewHolder 描述item view和放在RecyclverView內的metadata. RecyclerView依賴此機置來正確的放置view到list scrolls. and to do interesting things like animate views when items are added or removed in the Adapter.
+ View holder的itemView屬性: 若RecyclerView不需存取ViewHolder儲存的views, 能使用view holder的itemView屬性. 當在螢幕上顯示binding的item, RecyclerView uses itemView, when drawing decorations around a view like a border, and for implementing accessibility.
+
+ Step 1: 建立item的layout
+ Ch7-1-5 Step 1 建立item的layout
+
+  Reference website: https://developer.android.com/codelabs/kotlin-android-training-recyclerview-fundamentals#4
+
      */
 }
