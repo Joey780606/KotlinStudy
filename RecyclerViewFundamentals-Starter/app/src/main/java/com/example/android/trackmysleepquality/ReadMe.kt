@@ -61,5 +61,28 @@ Ch7-1-5 Create a ViewHolder for all the sleep data
 
   Reference website: https://developer.android.com/codelabs/kotlin-android-training-recyclerview-fundamentals#4
 
+= = = = = =
+Ch7-2-1 Welcome
+You learn how to use data binding with RecyclerView.
+How to use DiffUtil to efficiently update a list displayed by RecyclerView.
+
+= = = = = =
+Ch7-2-2 App overview
+you build the DiffUtil and data-binding portion for the RecyclerView. After this codelab, your app will look exactly the same, but it will be more efficient and easier to scale and maintain.
+
+= = = = = =
+Ch7-2-3 Task: Get started and review what you have so far
+ 1. RecyclerView 重要元件介紹
+  a. From user input, the app creates a list of SleepNight objects. Each SleepNight object represents a single night of sleep, its duration, and quality.
+  b. The SleepNightAdapter 改寫(adapts) the list of SleepNight objects into something RecyclerView can use and display.
+  c. The SleepNightAdapter adapter 產生(produces) ViewHolders that contain the views, data, and meta information for the recycler view to display the data.
+  d. RecyclerView uses the SleepNightAdapter to determine how many items there are to display (getItemCount()). RecyclerView uses onCreateViewHolder() and onBindViewHolder() to get view holders bound to data for displaying.
+ 2. notifyDataSetChanged() - 告訴 RecyclerView, list的一個item已被改變了,需要更新, 但這會更新list所有item的,包含螢幕中看不到的元件,造成不需要的工作.
+   取代方式:
+     a.使用 notifyItemChanged() 來告訴 RecyclerView 有項被新增/刪除/移除. 但這樣做瑣碎和含額外的code
+	 b.使用 DiffUtil,這個有效率且不難.
+ 3. 最後講解 DiffUtil 的功能
+
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-diffutil-databinding/#2
      */
 }
