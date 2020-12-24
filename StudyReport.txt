@@ -1,0 +1,104 @@
+Ch3-1-1 專案概念,不重要
+Ch3-1-2 專案介紹,不重要
+Ch3-1-3 使用AndroidTrivia-Starter project,啟始的畫面是空白的,不重要
+Ch3-1-4 建立Fragment (很重要)
+  1. 建立 TitleFragment.kt (裡面有用到 DataBindingUtil 的功能)
+  2. activity_main.xml 帶入 fragment 的 參數,以下的名字比較怪,這是因為Package name就是com.example.android.navigation
+	android:name="com.example.android.navigation.TitleFragment"
+
+Ch3-2-1 專案概念,如果使用 navigation 相關設定,還有像 Up button, options menu, navigation drawer,略重要
+Ch3-2-2 專案介紹,不重要
+Ch3-2-3 加入navigation component到Project, 重要
+  1. 加入 Gradle dependencies
+  2. 在AS panel,右點 res folder,選擇 New > Android Resource file. (加入後先為空值)
+Ch3-2-4 建立 NavHostFragment (Navigation host fragment) 非常重要
+  1. activity_main.xml 的內容有要調整
+  android:name="androidx.navigation.fragment.NavHostFragment"  >> 這好像一定要
+  app:navGraph="@navigation/navigation" >> 設定他為 navigation graph的resource
+  app:defaultNavHost="true" >>  此navigation host為default host and will intercept(截聽,阻止) the system Back button.
+Ch3-2-5 加 fragments 到 navigation graph 非常重要
+  1. 隨課程介紹加入 以圖型操作方式,加入 fragment_title (第一頁)
+     (這看起來選 .kt 或 .xml都可以,但應該在 .kt要指定要用的UI .xml 為那一個才合理)
+  2. 要看 navigation.xml 的文件,裡面都很重要
+  3. 當拉線來建立二個 .xml 的關係, 會多一個 action 的標籤
+  4. TitleFragment.kt 建立 play的 click按鍵,轉頁就用這個
+   view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
+Ch3-2-6 加額外的navigation 略重要
+  1. 答對走A頁, 答錯走B頁,在 navigation.xml 只是加了二頁,及 fragment_game 答對和答錯的二個action,
+     在 GameFragment.kt 裡則多加判斷來做 findNavController().navigate
+Ch3-2-7 改變 Back button(手機系統的鍵)的目的地 非常重要
+  1. 在 action 標籤,可設定若按了app的back鍵要怎麼處理,裡面 popUpTo,與 popUpToInclusive的設定
+  2. 程式裡記錄的內容
+    a. popUpTo : GameFragment 跳去 GameOverFragment, 按 back 鍵, back stack 會讓 fragment 跳到 GameFragment 頁
+    b. popUpToInclusive : 若為 true, GameFragment 跳去 GameOverFragment, 按 back 鍵, back stack 會清掉包含 GameFragment 以上的頁面 
+    c. 若 popUpTo 指向程式啟始第一頁, popUpToInclusive 為 true, 按 back 鍵, back stack 會讓使用者離開 app 
+Ch3-2-8 Up button的處理 (app本身ui的back鍵) 非常重要
+  1. 是使用 NavigationUI 的 library
+  2. MainActivity.java 要 override onSupportNavigateUp
+Ch3-2-9 Add an options menu 非常重要
+  1. 拉頁面到 navigation.xml
+  2. 建立 options_menu (setHasOptionsMenu, onCreateOptionsMenu, onOptionsItemSelected) 都重要
+Ch3-2-10 add the navigation drawer非常重要
+  1. 加 library --> implementation "com.google.android.material:material:$version"
+  2. Step 3 - 建立 drawer 的menu,他屬於 menu, 並建立 menu 的項目
+  4. 在 activity_main.xml 把 <androidx.drawerlayout.widget.DrawerLayout 加入到 <LinearLayout 標籤外
+     再加入 <com.google.android.material.navigation.NavigationView
+  5. 在 MainActivity.kt 裡加上 NavigationUI.setupWithNavController(binding.navView, navController)
+
+Ch4-1-1 專案概念,重要
+Ch4-1-2 說使用DessertClicker範例,不重要
+Ch4-1-3 只是在原有生命週期加Log,不重要
+Ch4-1-4 加上 Timber這個library相關用法, 略重要
+Ch4-1-5 介紹各生命週期處理, 不重要
+Ch4-1-6 介紹Fragment lifecycle的生命週期(但是是用AndroidTrivia project的案子哦~)
+
+Ch4-2-1 專案概念,會教使用lifecycle observer, 在app關閉時儲存資料
+Ch4-2-2 說使用DessertClicker範例,不重要
+Ch4-2-3 
+  1.設定 DessertTimer (runnable用法, lateinit var, Handler(Looper.getMainLooper() )
+  2.在onStart(), onStop() 來 開始/停止 計時
+Ch4-2-4 使用lifecycle library (重頭戲,非常重要)
+  1. DessertTimer(lifecycle: Lifecycle) : LifecycleObserver 
+  2. init {  lifecycle.addObserver(this) }
+  3. @OnLifecycleEvent(Lifecycle.Event.ON_START) , @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+Ch4-2-5 重要
+  1. 教導如何用adb指令關程式,
+  2. 如何使用 onSaveINstanceState()
+  3. 在onCreate使用 saveInstanceState
+Ch4-2-6 翻轉的處理,沒改code, 略重要
+
+Ch5-1-1 專案概念,教導使用 Lifecycle, ViewModel, ViewModelFactory, factory method, ViewModelProvider.Factory, 重要
+Ch5-1-2 使用 GuessTheWord-Starter app
+Ch5-1-3 專案介紹,未改code,略重要
+Ch5-1-4 點出問題,及怎麼解決,相關架構的方法 ,(非常重要!)
+   1.介紹 Android app architecture, MVVM
+   2.UI controller (ViewModel & ViewModelFactory) (介紹重要)
+   5.ViewModel的介紹(重要) GameViewModel的使用
+   6.ViewModelFactory 實例化(instantiates) ViewModel object.
+Ch5-1-5 建立ViewModel (非常重要!)
+Ch5-1-6 Populate(填充) the GameViewModel (非常重要!)
+   1.將原本在UI controller 的變數,想辦法移到 GameViewModel 裡
+   2.GameFragment.kt 的 DataBindingUtil的處理也很重要 (提外話)
+Ch5-1-7 加入結束Game的button (重要)
+   1. gamFinished() 做的事重要
+Ch5-1-8 使用 ViewModelFactory (重要)
+   1. 建立 ScoreViewModel 和 ScoreViewModelFactory.kt
+     <androidx.drawerlayout.widget.DrawerLayout
+
+
+目前會使用到的library
+1. project-level build.gradle
+ext {
+   navigationVersion = "2.3.0"
+}
+
+2. module-level build.gradle
+dependencies {
+  // Navigation
+  implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+  implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+  // Material, 目前設計 navigation drawer會用到
+  implementation "com.google.android.material:material:1.2.1"
+  
+}
