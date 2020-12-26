@@ -84,5 +84,11 @@ Ch7-2-3 Task: Get started and review what you have so far
  3. 最後講解 DiffUtil 的功能
 
  Reference website: https://developer.android.com/codelabs/kotlin-android-training-diffutil-databinding/#2
+
+= = = = = = =
+Ch7-2-4 Refresh list content with DiffUtil
+ 1.新增 SleepNightDiffCallback, 他繼承 DiffUtil.ItemCallback, 所以裡面有 areItemsTheSame, areContentsTheSame二個函式
+
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-diffutil-databinding/#3
      */
 }
