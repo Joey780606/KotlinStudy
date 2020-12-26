@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter     //ListAdapter 是要 import 這個
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.TextItemViewHolder
@@ -15,17 +16,8 @@ import com.example.android.trackmysleepquality.convertDurationToFormatted
 import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
 
-class SleepNightAdapter: RecyclerView.Adapter<SleepNightAdapter.ViewHolder>()  {  // Ch7-1-5 Step 3-1
-    var data = listOf<SleepNight>()  // Ch7-1-4 Step 3-3
-      set(value) {
-          field = value
-          notifyDataSetChanged()
-      }
-      // Ch7-1-4 Step 3-12
-      // 當data 被改變時, adapter 需讓 RecyclerView 知道, 因為 RecyclerView不知任何有關 data的事. RecyclerView只知有關 adapter 給他的 view holder
-      // 當顯示的資料被改變時,為了告訴 RecyclerView, 在上面加入一個自訂的setter到 data變數
-      // 在 setter, 給 data一個新值,然後呼叫 notifyDataSetChanged() 來觸發和新data 重畫list
-
+//class SleepNightAdapter: RecyclerView.Adapter<SleepNightAdapter.ViewHolder>()  {  // Ch7-1-5 Step 3-1
+class SleepNightAdapter: ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback())  {  // Ch7-2-5 Step 1
     // Ch7-1-5 Step 2 (較怪的是不需指定 list_item_sleep_night.xml)
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
@@ -33,9 +25,8 @@ class SleepNightAdapter: RecyclerView.Adapter<SleepNightAdapter.ViewHolder>()  {
         val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
     }
 
-    override fun getItemCount() = data.size  // Ch7-1-4 Step 3-4
     override fun onBindViewHolder(holder: ViewHolder, position: Int) { // Ch7-1-5 Step 3-6 ~ Step 3-9
-        val item = data[position]
+        val item = getItem(position)
         val res = holder.itemView.context.resources
         holder.sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
         holder.quality.text = convertNumericQualityToString(item.sleepQuality, res) // Ch7-1-5 Step 3-11

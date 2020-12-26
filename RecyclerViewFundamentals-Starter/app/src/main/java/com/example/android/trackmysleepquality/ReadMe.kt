@@ -90,5 +90,12 @@ Ch7-2-4 Refresh list content with DiffUtil
  1.新增 SleepNightDiffCallback, 他繼承 DiffUtil.ItemCallback, 所以裡面有 areItemsTheSame, areContentsTheSame二個函式
 
  Reference website: https://developer.android.com/codelabs/kotlin-android-training-diffutil-databinding/#3
+
+= = = = = =
+Ch7-2-5 Use ListAdapter to manage your list
+ 1. RecyclerView provides an adapter class, ListAdapter, that helps you build a RecyclerView adapter that's backed by a list.
+ 2. Step 2: Your code needs to tell the ListAdapter when a changed list is available. ListAdapter provides a method called submitList() to tell ListAdapter that a new version of the list is available.
+
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-diffutil-databinding/#4
      */
 }

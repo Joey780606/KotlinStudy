@@ -73,7 +73,7 @@ class SleepTrackerFragment : Fragment() {
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         }) // Ch7-1-4 Step 5-7, 5-8 - Associate the adapter with the RecyclerView
 
