@@ -97,5 +97,13 @@ Ch7-2-5 Use ListAdapter to manage your list
  2. Step 2: Your code needs to tell the ListAdapter when a changed list is available. ListAdapter provides a method called submitList() to tell ListAdapter that a new version of the list is available.
 
  Reference website: https://developer.android.com/codelabs/kotlin-android-training-diffutil-databinding/#4
+= = = = = =
+Ch7-2-6 Task: Use DataBinding with RecyclerView
+ 1. This task use the same technique as in previous codelabs to set up data binding, and you eliminate calls to findViewById().
+ 2. Step 1: Add data binding to the layout file (.xml 最外面加上 <layout>)
+ 3. Step 2: Inflate the item layout using data binding (步驟比較多,要注意,都在處理 SleepNightAdapter.java)
+ 4. Step 3: Refactor > Inline 的處理 (Ctrl + alt + N) 的處理要學
+
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-diffutil-databinding/#5
      */
 }
