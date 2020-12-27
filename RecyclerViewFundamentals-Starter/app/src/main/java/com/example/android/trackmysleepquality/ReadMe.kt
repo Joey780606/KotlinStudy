@@ -105,5 +105,15 @@ Ch7-2-6 Task: Use DataBinding with RecyclerView
  4. Step 3: Refactor > Inline 的處理 (Ctrl + alt + N) 的處理要學
 
  Reference website: https://developer.android.com/codelabs/kotlin-android-training-diffutil-databinding/#5
+= = = = = =
+Ch7-2-7 Task: Create binding adapters
+ 1. This task upgrade your app to use data binding with binding adapters to set the data in your views.
+ 2. Previous codelab used the Transformations class to take LiveData and generate formatted strings to display in text views.
+ 3. However, if you need to bind different types, or complex types, you can provide binding adapters to help data binding use those types.
+ 4. Binding adapters are adapters that take your data and adapt(改寫) it into something that data binding can use to bind a view, like text or an image.
+ 5. Step 1: Create binding adapters
+ 6. Step 2 和 Step 3 都有沒有在code 的地方,要注意
+
+  Reference website: https://developer.android.com/codelabs/kotlin-android-training-diffutil-databinding/#6
      */
 }
