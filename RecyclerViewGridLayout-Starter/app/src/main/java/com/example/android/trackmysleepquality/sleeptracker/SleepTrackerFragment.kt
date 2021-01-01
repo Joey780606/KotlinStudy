@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.databinding.FragmentSleepTrackerBinding
@@ -115,6 +116,11 @@ class SleepTrackerFragment : Fragment() {
                 sleepTrackerViewModel.doneNavigating()
             }
         })
+
+        // Ch 7-3-4  Step 1-5, 1-6
+        val manager = GridLayoutManager(activity, 3)
+        //val manager = GridLayoutManager(activity, 5, GridLayoutManager.HORIZONTAL, false)
+        binding.sleepList.layoutManager = manager
         return binding.root
     }
 }
