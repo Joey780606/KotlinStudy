@@ -85,6 +85,14 @@ Ch5-1-8 使用 ViewModelFactory (重要)
    1. 建立 ScoreViewModel 和 ScoreViewModelFactory.kt
      <androidx.drawerlayout.widget.DrawerLayout
 
+Ch6-1-1 概念建立 (重要)
+Ch6-1-2 程式運作方式 (不重要)
+Ch6-1-3 有提到 coroutines 和 androidTest folder
+Ch6-1-4 建立SleepNight entity (重要)
+   1. entity, query, Data access object(DAO) 的介紹
+   2. 建立 SleepNight entity, 使用 @Entity, @PrimaryKey, @ColumnInfo
+Ch6-1-5 建立DAO (重要)
+   1. Data access object - 提供便利的insert, delete, update database (把 DAO 視為存取 database 的 custom interface)
 
 目前會使用到的library
 1. project-level build.gradle

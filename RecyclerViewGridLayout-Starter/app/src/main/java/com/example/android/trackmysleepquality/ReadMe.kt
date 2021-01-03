@@ -28,5 +28,6 @@ Ch 7-3-3 Concept: Layouts and LayoutManagers (觀念重要)
 
 Ch 7-3-4 Task: Implement GridLayout
  按照步驟做
+ https://developer.android.com/codelabs/kotlin-android-training-grid-layout#3
      */
 }
