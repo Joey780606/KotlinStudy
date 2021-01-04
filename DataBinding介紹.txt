@@ -1,0 +1,93 @@
+DataBinding介紹 : 專案不加了,直接談精髓
+
+1. 參考資料: 
+https://developer.android.com/codelabs/kotlin-android-training-data-binding-basics/index.html#0
+
+2. 各章節介紹
+Ch2.4.1 Welcome
+ 1. findViewById() 的問題, 不重要 (Ch2.4.3有再講更清楚)
+
+Ch2.4.2 App overview
+ 專案介紹, 不重要
+
+Ch2.4.3 Task: Use data binding to eliminate findViewById(), 很重要
+ 1. 再描述 findViewById() 的問題
+ 2. 一旦在 app 使用, you can access the views, and other data, through the binding object, 不用遍歷(traverse) view的階層或搜尋資料.
+ 3. 裡面的示意圖重要
+ 4. data binding優勢
+   a. Code精簡,易讀,易維護
+   b. Data 與 View清楚的分開
+   c. 只在app一開始啟動時遍歷view hierarchy
+   d. 取得存取view的 type safety  (Type safety means that the compiler validates types while compiling, and it throws an error if you try to assign the wrong type to a variable.)
+ 5. Step 1: Enable data binding
+   在 build.gradle (Module: app) 的 android section, before the closing brace, 加入 buildFeatures section and set dataBinding to true.
+   buildFeatures {
+      dataBinding true
+   }
+ 6. Step 2: Change layout file to be usable with data binding
+   a. 在原 layout 檔加入一個 <layout></layout>, 像
+
+	<layout>
+	   <LinearLayout ... >
+	   ...
+	   </LinearLayout>
+	</layout>
+
+   b. 把原最外面的相關設定,移到最外層的 layout ,像這樣
+	<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	   xmlns:app="http://schemas.android.com/apk/res-auto">
+ 7. Step 3: Create a binding object in the main activity
+    The type of binding, the ActivityMainBinding class, is created by the compiler specifically for this main activity. The name is derived from the name of the layout file, that is, activity_main + Binding.
+
+    >> private lateinit var binding: ActivityMainBinding
+
+    >> import com.example.android.aboutme.databinding.ActivityMainBinding
+
+    >> 在 onCreate() 取代 setContentView() 為以下code
+     binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+    >> import androidx.databinding.DataBindingUtil
+
+ 8. Step 4: Use the binding object to replace all calls to findViewById()
+    Replace this code: findViewById<Button>(R.id.done_button) with: binding.doneButton
+    apply : 允許你在一個例項上呼叫多個方法 (就可以少打 binding. 了 )
+	binding.apply {
+	   nicknameText.text = nicknameEdit.text.toString()
+	   nicknameEdit.visibility = View.GONE
+	   doneButton.visibility = View.GONE
+	   nicknameText.visibility = View.VISIBLE
+	}
+
+Ch2.4.4 Task: Use data binding to display data , 很重要
+  Step 1: 建立一個 MyName.kt 的 class
+   data class MyName(var name: String = "", var nickname: String = "")
+   
+   測試心得: 要記得這叫data class,是為了給 activity_main.xml 的 <data></data> 區間互動使用資料的 class
+  Step 2: 在 activity_main.xml , 在 <layout> and <LinearLayout> 間加入以下
+	<data>
+	  <variable
+	       name="myName"
+	       type="com.example.android.aboutme.MyName" />
+	</data>
+
+    然後在 layout , 原本是
+    android:text="@string/name" 的地方,改成
+    android:text="@={myName.name}"
+
+
+  Step 3: 在 MainActivity.java 裡的宣告一 Global variable
+    private val myName: MyName = MyName("Aleks Haecky")
+
+    再將 binding (activity_main.xml 的 <data></data> 設定的 myName = 上面的變數
+      binding.myName = myName
+
+  Step 4: 在 activity_main.xml 的 text view niciname_text 裡,設定值為
+    android:text="@={myName.nickname}"
+
+    在 Activity 裡要改值,可以這樣下:
+	binding.apply {
+	   myName?.nickname = nicknameEdit.text.toString()
+	   invalidateAll()
+	   ...
+	}
+
