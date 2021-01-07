@@ -1,4 +1,5 @@
-Ch3-1-1 專案概念,不重要
+Ch3-1-1 Navigation 專案概念,不重要
+ https://developer.android.com/codelabs/kotlin-android-training-create-and-add-fragment?index=..%2F..android-kotlin-fundamentals#0
 Ch3-1-2 專案介紹,不重要
 Ch3-1-3 使用AndroidTrivia-Starter project,啟始的畫面是空白的,不重要
 Ch3-1-4 建立Fragment (很重要)
@@ -6,7 +7,7 @@ Ch3-1-4 建立Fragment (很重要)
   2. activity_main.xml 帶入 fragment 的 參數,以下的名字比較怪,這是因為Package name就是com.example.android.navigation
 	android:name="com.example.android.navigation.TitleFragment"
 
-Ch3-2-1 專案概念,如果使用 navigation 相關設定,還有像 Up button, options menu, navigation drawer,略重要
+Ch3-2-1 Define navigation paths 專案概念,如果使用 navigation 相關設定,還有像 Up button, options menu, navigation drawer,略重要
 Ch3-2-2 專案介紹,不重要
 Ch3-2-3 加入navigation component到Project, 重要
   1. 加入 Gradle dependencies
@@ -44,6 +45,18 @@ Ch3-2-10 add the navigation drawer非常重要
   4. 在 activity_main.xml 把 <androidx.drawerlayout.widget.DrawerLayout 加入到 <LinearLayout 標籤外
      再加入 <com.google.android.material.navigation.NavigationView
   5. 在 MainActivity.kt 裡加上 NavigationUI.setupWithNavController(binding.navView, navController)
+
+Ch3-3-1 Start an external Activity
+  參考網址: https://developer.android.com/codelabs/kotlin-android-training-start-external-activity/index.html#0
+  教導Safe Args gradle plugin, 加入 share menu, 和implicit intent處理
+Ch3-3-2 App overview 說功能,不重要
+Ch3-3-3 Set up and use the Safe Args plugin, 重要
+  教導如何使用 Safe args (是用在Fragment之前傳遞變數時的處理)
+Ch3-3-4 Add and pass arguments, 重要
+  如何在 Fragment 傳遞資料
+Ch3-3-5 Sharing game results
+  Implicit intent(隱含意圖, 像拍照,打電話,編輯 ACTION_VIEW, ACTION_EDIT, and ACTION_DIAL等)
+
 
 Ch4-1-1 專案概念,重要
 Ch4-1-2 說使用DessertClicker範例,不重要
@@ -93,6 +106,21 @@ Ch6-1-4 建立SleepNight entity (重要)
    2. 建立 SleepNight entity, 使用 @Entity, @PrimaryKey, @ColumnInfo
 Ch6-1-5 建立DAO (重要)
    1. Data access object - 提供便利的insert, delete, update database (把 DAO 視為存取 database 的 custom interface)
+   2. DAO 是一個 Interface.
+   3. 裡面的 DAO 範例重要
+Ch6-1-6 建立和測試room database (重要)
+   1. 專有名詞: abstract database holder class - @Database
+   2. Room database建構的方式:
+    a. 宣告public abstract class,繼承 extend RoomDatabase, 這個class扮演 databse holder
+    b. Annotate @Database 到此class, 宣告為 database entities,且設定version number.
+    c. 在companion object,定義一 abstract method,來回傳 SleepDatabaseDao
+    d. 一app只需一個Room databse,所以 RoomDatabase為singleton, 若已有,就回傳已有的資料庫.
+   3. fallbackToDestructiveMigration 這是和 Migration 有關的技術,要研究
+     https://kknews.cc/zh-tw/code/zpbgyqg.html
+   
+   Step 2: Test with SleepDatabase
+   1. 每個專案都有一個AndroidTest folder, 含unit tests, 包含 Android instrumentation(儀器), 需要(或不要) Android framework 
+   2. 關鍵字: allowMainThreadQueries.
 
 目前會使用到的library
 1. project-level build.gradle
