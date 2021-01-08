@@ -57,23 +57,33 @@ Ch3-3-4 Add and pass arguments, 重要
 Ch3-3-5 Sharing game results
   Implicit intent(隱含意圖, 像拍照,打電話,編輯 ACTION_VIEW, ACTION_EDIT, and ACTION_DIAL等)
 
-
 Ch4-1-1 專案概念,重要
 Ch4-1-2 說使用DessertClicker範例,不重要
-Ch4-1-3 只是在原有生命週期加Log,不重要
+Ch4-1-3 只是在原有生命週期加Log, 圖重要,app新增不重要
 Ch4-1-4 加上 Timber這個library相關用法, 略重要
-Ch4-1-5 介紹各生命週期處理, 不重要
+Ch4-1-5 介紹各生命週期處理, 不重要,略重要
 Ch4-1-6 介紹Fragment lifecycle的生命週期(但是是用AndroidTrivia project的案子哦~)
 
 Ch4-2-1 專案概念,會教使用lifecycle observer, 在app關閉時儲存資料
 Ch4-2-2 說使用DessertClicker範例,不重要
-Ch4-2-3 
+Ch4-2-3 Avoid lifecycle mistakes (重要)
   1.設定 DessertTimer (runnable用法, lateinit var, Handler(Looper.getMainLooper() )
   2.在onStart(), onStop() 來 開始/停止 計時
 Ch4-2-4 使用lifecycle library (重頭戲,非常重要)
-  1. DessertTimer(lifecycle: Lifecycle) : LifecycleObserver 
-  2. init {  lifecycle.addObserver(this) }
-  3. @OnLifecycleEvent(Lifecycle.Event.ON_START) , @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+  1. Lifecycle library的三個主要部分: 
+    Lifecycle owner : 是指 Activity 和 Fragment 
+    Lifecycle class : 擁有 lifecycle owner的真實狀態,和lifecycle 改變發生時的 trigger發生時
+    Lifecycle observers : 當lifecycle改變時,觀察lifecycle狀態和執行的tasks. 他是實行 LifecycleObserver interface
+
+  2. DessertTimer.kt 修改關鍵詞
+    a. DessertTimer(lifecycle: Lifecycle) : LifecycleObserver 
+    b. init {  lifecycle.addObserver(this) }
+    c. @OnLifecycleEvent(Lifecycle.Event.ON_START) , @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+
+  3. MainActivity.kt 修改關鍵詞
+    a. dessertTimer = DessertTimer(this.lifecycle)
+    b. 原先 onStart() 裡的 dessertTimer.startTimer()
+       原先 onStop() 裡的 dessertTimer.stopTimer()
 Ch4-2-5 重要
   1. 教導如何用adb指令關程式,
   2. 如何使用 onSaveINstanceState()
@@ -126,6 +136,7 @@ Ch6-1-6 建立和測試room database (重要)
 1. project-level build.gradle
 ext {
    navigationVersion = "2.3.0"
+   timberVersion = '4.7.1'
 }
 
 2. module-level build.gradle
@@ -133,6 +144,9 @@ dependencies {
   // Navigation
   implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
   implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+  // Timber
+  implementation "com.jakewharton.timber:timber:$timberVersion"
 
   // Material, 目前設計 navigation drawer會用到
   implementation "com.google.android.material:material:1.2.1"
