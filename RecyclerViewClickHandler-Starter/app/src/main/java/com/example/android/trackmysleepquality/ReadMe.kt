@@ -20,5 +20,11 @@ Ch 7-4-4 Task: Make items clickable (非常重要)
  3. Adapter 可以用來操作 clicks. 但 adapter只負責顯示, 不處理 app的logic. 所以需放操作在ViewModel 裡
  4. 按照程式流程做
   https://developer.android.com/codelabs/kotlin-android-training-interacting-with-items/#3
+
+Ch 7-4-5 Task: Handle item clicks
+ 1. 處理按下 Recyclerview 內的 item時,要怎麼做處理
+ 2. 最後的 Handle null values in the binding adapters: 重要,如何避免 is null的crash項目.
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-interacting-with-items/#4
+
      */
 }
