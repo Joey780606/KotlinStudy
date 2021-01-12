@@ -1,3 +1,8 @@
+[研究章節]
+[目前會使用到的library]
+[較多程式,可研究的地方]
+= = = = 
+[研究章節]
 Ch3-1-1 Navigation 專案概念,不重要
  https://developer.android.com/codelabs/kotlin-android-training-create-and-add-fragment?index=..%2F..android-kotlin-fundamentals#0
 Ch3-1-2 專案介紹,不重要
@@ -111,6 +116,7 @@ Ch5-1-6 Populate(填充) the GameViewModel (非常重要!)
 Ch5-1-7 加入結束Game的button (重要)
    1. gamFinished() 做的事重要
 Ch5-1-8 使用 ViewModelFactory (重要)
+   1. factory method pattern是 creation(創造型的) design pattern,使用factory method來建立object. 他是回傳相同class的instance的方法
    1. 建立 ScoreViewModel 和 ScoreViewModelFactory.kt
      <androidx.drawerlayout.widget.DrawerLayout
 
@@ -138,7 +144,7 @@ Ch6-1-6 建立和測試room database (重要)
    1. 每個專案都有一個AndroidTest folder, 含unit tests, 包含 Android instrumentation(儀器), 需要(或不要) Android framework 
    2. 關鍵字: allowMainThreadQueries.
 
-目前會使用到的library
+[目前會使用到的library]
 1. project-level build.gradle
 ext {
    navigationVersion = "2.3.0"
@@ -163,3 +169,6 @@ dependencies {
   implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelVersion'
   
 }
+
+[較多程式,可研究的地方]
+1. Ch5-1-6
