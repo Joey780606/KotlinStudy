@@ -26,5 +26,22 @@ Ch 7-4-5 Task: Handle item clicks
  2. 最後的 Handle null values in the binding adapters: 重要,如何避免 is null的crash項目.
  Reference website: https://developer.android.com/codelabs/kotlin-android-training-interacting-with-items/#4
 
+Ch 7-5-1 Headers in RecyclerView
+ 要學的是,在RecyclerView裡,使用超過一個ViewHolder來在不同的layout裡加一項目. 如何使用第二個ViewHolder來,在RecyclerView的items顯示上方加入header
+
+Ch 7-5-2 不重要
+
+Ch 7-5-3 Concept: Headers in RecyclerView
+ 1. 文中提到數次 different ViewHolder
+ 2. 加入 headers的二種方法,此處將使用第一種方法
+
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-headers/#2
+
+Ch 7-5-4 Task: Add a header to your RecyclerView
+ 1. Sealed class: https://medium.com/@carterchen247/kotlin%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97-sealed-class-82eccf890ac0
+ 2. 有用到 DiffUtil, DiffItemCallback
+ 3. SleepNightAdapter.kt 改很多,要研究
+
+ https://developer.android.com/codelabs/kotlin-android-training-headers/#3
      */
 }
