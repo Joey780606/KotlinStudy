@@ -43,5 +43,19 @@ Ch 7-5-4 Task: Add a header to your RecyclerView
  3. SleepNightAdapter.kt 改很多,要研究
 
  https://developer.android.com/codelabs/kotlin-android-training-headers/#3
+
+Ch 7-5-5 Task: Use coroutines for list manipulations
+1.要改的二件事
+ a. header在左上角不好辨別
+ b. 不應在UI thread上使用addHeaderAndSubmitList(), 要改用 coroutines 的方式
+ 此版只改 b 的事情
+
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-headers/#4
+
+Ch 7-5-6 Extend the header to span across the screen
+1. 讓 header 的寬度是跟一列一樣長
+2. 關鍵字, GridLayoutManager, SpanSizeLookup
+
+ Reference website: https://developer.android.com/codelabs/kotlin-android-training-headers/#5
      */
 }
