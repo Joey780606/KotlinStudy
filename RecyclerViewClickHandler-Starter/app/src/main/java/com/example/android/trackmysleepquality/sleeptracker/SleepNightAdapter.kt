@@ -26,6 +26,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.database.SleepNight
 import com.example.android.trackmysleepquality.databinding.ListItemSleepNightBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 //Ch 7-5-4 Step 3-1
 private val ITEM_VIEW_TYPE_HEADER = 0
@@ -36,6 +40,9 @@ private val ITEM_VIEW_TYPE_ITEM = 1
 
 class SleepNightAdapter(val clickListener: SleepNightListener) :
         ListAdapter<SleepNightAdapter.DataItem, RecyclerView.ViewHolder>(SleepNightDiffCallback()) {   // Ch7-4-5 Step 3
+
+    private val adapterScope = CoroutineScope(Dispatchers.Default)
+
     //Ch 7-5-4 Step 1 (整個Step 1都在這裡)
     sealed class DataItem {
         abstract val id: Long   //Ch 7-5-4 Step 1-6, 若加這個, 下面的SleepNightItem 和 Header沒有再 override val id,這二個function就會錯誤
@@ -65,11 +72,15 @@ class SleepNightAdapter(val clickListener: SleepNightListener) :
     }
 
     fun addHeaderAndSubmitList(list: List<SleepNight>?) {
-        val items = when(list) {
-            null -> listOf(DataItem.Header)
-            else -> listOf(DataItem.Header) + list.map { DataItem.SleepNightItem(it)  }
+        adapterScope.launch {
+            val items = when (list) {
+                null -> listOf(DataItem.Header)
+                else -> listOf(DataItem.Header) + list.map { DataItem.SleepNightItem(it) }
+            }
+            withContext(Dispatchers.Main) {
+                submitList(items)
+            }
         }
-        submitList(items)
     }
 
     //Ch 7-5-4 Step 2-3
