@@ -117,8 +117,31 @@ Ch5-1-7 加入結束Game的button (重要)
    1. gamFinished() 做的事重要
 Ch5-1-8 使用 ViewModelFactory (重要)
    1. factory method pattern是 creation(創造型的) design pattern,使用factory method來建立object. 他是回傳相同class的instance的方法
-   1. 建立 ScoreViewModel 和 ScoreViewModelFactory.kt
+   2. 建立 ScoreViewModel 和 ScoreViewModelFactory.kt
      <androidx.drawerlayout.widget.DrawerLayout
+
+Ch5-2-1 LiveData and LiveData observers (觀念重要)
+   1. 學習在 ViewModel classes裡整合 LiveData
+   2. LiveData - Android Architecture Components的一部分,讓你建立在底層的(underlying) database改變時,通知views的data objects
+        設定 "observers" 來觀察app的資料
+Ch5-2-2 App overview (不重要)
+Ch5-2-3 Task: Get started (不重要)
+Ch5-2-4 Task: Add LiveData to the GameViewModel (極重要)
+   1. 關鍵字: LiveData, LifecyclerOwner(通常Activity, Fragment會用到), MutableLiveData
+   2. The LiveData only updates observers that are in an active lifecycle state such as STARTED or RESUMED. 
+   3. (實作感想) LiveData做的較像是即時互動的資料,像點UI button後, ViewModel的相對 MutableLiveData 值會立即改變, 但若是比較長才會更新的,是不是要用callback function?
+Ch5-2-5 Task: Attach observers to the LiveData objects (重要, 5-2-4要升級到此才更有效果)
+   1. 關鍵字: viewLifecycleOwner(有介紹,在Activity/Fragment使用),這可以在UI層更方便的observer值的變化,寫更少code
+   2. 連接(attach) observer物件到那些LiveData objects
+Ch6-2-6 Task: Encapsulate the LiveData (重要, 目的:保障資料安全性)
+   1. 關鍵字: MutableLiveData, LiveData, backing property
+   2. MutableLiveData : 在此object的資料可改變. 在ViewModel裡面, 資料應能被編輯,就要用 MutableLiveData
+   3. LiveData: 在此object的資料只可讀,不能改. 在ViewModel外面,應待合此規定,就要expose為LiveData.
+   4. Backing property充許你使用getter的方式取值,而不是透過整個object(為了物件導向的安全性)
+   5. 此例程式教導backing property
+Ch6-2-7 Task: Add a game-finished event
+   1. 關鍵字: LiveData observer pattern, observer pattern
+   2. 完成遊戲,會自動進到Score頁,而不是使用者要按"End Game" (當做完某些事, ViewModel會與Fragment溝通)
 
 Ch6-1-1 概念建立 (重要)
 Ch6-1-2 程式運作方式 (不重要)
