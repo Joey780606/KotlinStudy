@@ -38,5 +38,10 @@ class ReadMe {
 
      Related website: https://developer.android.com/codelabs/advanced-android-kotlin-training-canvas#3
 
+    Ch 2-2-5 Task. Set up a Paint and a Path for Drawing
+     What I do:
+     As title
+
+     Reference website: https://developer.android.com/codelabs/advanced-android-kotlin-training-canvas#4
      */
 }
