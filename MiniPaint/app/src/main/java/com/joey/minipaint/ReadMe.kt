@@ -31,5 +31,12 @@ class ReadMe {
      1. Build MyCanvasView and related setting.
 
      Reference: https://developer.android.com/codelabs/advanced-android-kotlin-training-canvas#2
+
+    Ch 2-2-4 Task. Display the Canvas
+     What I do?
+     1. Build Canvas and do related setting.
+
+     Related website: https://developer.android.com/codelabs/advanced-android-kotlin-training-canvas#3
+
      */
 }
