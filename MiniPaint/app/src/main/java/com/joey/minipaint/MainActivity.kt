@@ -15,7 +15,7 @@ import android.view.View
   Ch2.2.4 看過2次,很重要,尤其是Canvas的建立,與View在onDraw()時,要把View Canvas再畫一次Canvas的Bitmap的觀念
           onSizeChanged(), onDraw()
   Ch2.2.5 看完2次,重點在建立繪圖的Paint
-  Ch2.2.6 看過2次,很重要,onTouchEvent() Touch螢幕會處理的事
+  Ch2.2.6 看過2次,很重要,onTouchEvent() Touch螢幕會處理的事(test)
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
