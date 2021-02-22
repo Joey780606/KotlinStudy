@@ -70,7 +70,7 @@ class SleepTrackerViewModel(
         _showSnackbarEvent.value = false
     }
 
-    init {  //Ch6-2-6 Step 2-5
+    init {  //Ch6-2-6 Step 2-5, class constructor時必會執行的函式
         initializeTonight()
     }
 

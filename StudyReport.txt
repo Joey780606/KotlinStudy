@@ -1,6 +1,7 @@
 [研究章節]
 [目前會使用到的library]
 [較多程式,可研究的地方]
+[ViewModelFactory的目的說明]
 = = = = 
 [研究章節]
 Ch3-1-1 Navigation 專案概念,不重要
@@ -177,7 +178,28 @@ Ch6-2-4 Task: Add a ViewModel (很重要,在ViewModel加入資料庫的處理)
   a. ViewModel 宣告就帶 databaseDao 和 application 的參數了
   b. Step 2 
     ViewModelFactory 也是一樣(目的只是建立ViewModel)
-  
+  c. Step 3 重要,照做
+  d. Step 4 重要,設定 fragment_sleep_tracker.xml裡的 <data> 的處理,然後再 SleepTrackerFragment.kt 來設定跟<data>的關連
+Ch6-2-5 Task: Collect and display the data 純介紹,看專案裡的文字說明就好,重要
+Ch6-2-6 Collect and display the data
+  a. Step 1 要把除了 getAllNights() 外的 function 都要加上 suspend
+   1. 為什麼 getAllNights()不用加? 
+     because Room already uses a background thread for that specific @Query which returns LiveData.
+   2. 加 suspend 的用意: After adding the suspension, our Dao class methods can execute without blocking the current thread.
+  b. Step 2 
+   1. viewModelScope 是 Coroutine 的函式 viewModelScope.launch 是先 launch 起來
+  c. Step 3: Add the click handler for the Start button
+   1. fragment_sleep_tracker.xml 指定了 start_button, stop_button 在 onClick 時要執行的函式
+   2. coroutine with Room uses Dispatchers.IO, so this will not happen on the main thread. (coroutine with Room 的運作是不會發生在main thread的)
+  d. Step 4: Display the data
+   1. 當資料有變化時, nights 的LiveData會自動改變,不用再自動更新
+   2. 如果要將 object content轉換為文字時,就要使用 Transformation map
+   3. Util.kit > formatNights 裡面有 forEach 的使用, 裡面可用 it，而這個函式重要
+   4. Util.kit > formatNights 回應的是　Spanned　型態 HTML-formatted字串
+   5. res > values > strings.xml. 
+   6. SleepTrackerViewModel.kt > Transformations.map(nights) 就是可以把　nights　的型態(資料庫的資料，有多筆，就像array list)來傳換成想要呈現的資料
+　　　7. fragment_sleep_tracker.xml 的 textview 就可以設定文字是　"@{sleepTrackerViewModel.nightsString}"
+　　e. Step 5:
 
 
 [目前會使用到的library]
@@ -186,6 +208,7 @@ ext {
    navigationVersion = "2.3.0"
    timberVersion = "4.7.1"
    viewmodelVersion = "2.2.0"
+   room_version = '2.2.5'
 }
 
 2. module-level build.gradle
@@ -203,8 +226,21 @@ dependencies {
 
   // ViewModel
   implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelVersion'
+
+  // 單純的 lifecycle是不需要 implementation library 的
+
+  // Room
+  implementation "androidx.room:room-ktx:$room_version"
   
 }
 
 [較多程式,可研究的地方]
 1. Ch5-1-6
+
+[ViewModelFactory的目的說明]
+1. https://ithelp.ithome.com.tw/articles/10193118
+ViewModel若透過 ViewModelProviders 來取得，就不能在View中直接用constructor parameter來傳遞。若需要傳遞參數的話須建立Factory。
+
+ex: 以 TrackMySleepQuality-Starter 專案來看,他們希望 SleepQualityViewModel 是能把 一個Ｌong值和 DatabaseDao帶到新建的資料時，就必要用　SleepTrackerViewModelFactory，以 SleepTrackerFragment 內在建立時帶入．
+　如果不需要參
+

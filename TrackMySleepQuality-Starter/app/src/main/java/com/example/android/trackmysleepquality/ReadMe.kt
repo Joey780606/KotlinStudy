@@ -97,7 +97,7 @@ Ch 6-2-5 Coroutines  (整章都重要,只介紹,沒有更新Code)
     5. Blocking 和 Suspending的差異:
      If a thread is blocked, no other work happens. If the thread is suspended, other work happens until the result is available.
 
-    6. 使用Kotlin需要的三個東西
+    6. 在Kotlin使用Coroutines需要的三個東西
      a. job : Basically, a job is anything that can be canceled. Every coroutine has a job, and you can use the job to cancel the coroutine.
      b. dispatcher : The dispatcher sends off coroutines to run on various threads.
        Dispatchers.Main runs tasks on the main thread
