@@ -82,6 +82,7 @@ class SleepTrackerViewModel(
         viewModelScope.launch { //Ch6-2-6 Step 3-2
             val newNight = SleepNight() //Ch6-2-6 Step 3-3
             insert(newNight)  //Ch6-2-6 Step 3-4
+            tonight.value = getTonightFromDatabase()   // Horse Important: 之前好像少這段
         }
     }
 

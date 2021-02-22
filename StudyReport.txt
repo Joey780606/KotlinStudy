@@ -167,6 +167,19 @@ Ch6-1-6 建立和測試room database (重要)
    1. 每個專案都有一個AndroidTest folder, 含unit tests, 包含 Android instrumentation(儀器), 需要(或不要) Android framework 
    2. 關鍵字: allowMainThreadQueries.
 
+Ch6-2-1 Coroutines and Room, 又提到Coroutines
+  參考網址: https://developer.android.com/codelabs/kotlin-android-training-coroutines-and-room#0
+Ch6-2-2 介紹要做的事 (不重要)
+Ch6-2-3 Task: Inspect the starter code
+  a.在 layout的 activity_main.xml提到了 <merge>的tag,重要
+    be used to eliminate redundant layouts when including layouts
+Ch6-2-4 Task: Add a ViewModel (很重要,在ViewModel加入資料庫的處理)
+  a. ViewModel 宣告就帶 databaseDao 和 application 的參數了
+  b. Step 2 
+    ViewModelFactory 也是一樣(目的只是建立ViewModel)
+  
+
+
 [目前會使用到的library]
 1. project-level build.gradle
 ext {
