@@ -17,6 +17,7 @@
 package com.example.android.trackmysleepquality.sleeptracker
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ import com.google.android.material.snackbar.Snackbar
  */
 class SleepTrackerFragment : Fragment() {
 
+    val TAG = SleepTrackerFragment::class.java!!.simpleName
     /**
      * Called when the Fragment is ready to display content to the screen.
      *
@@ -45,6 +47,7 @@ class SleepTrackerFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
+        Log.v(TAG, "create SleepTrackerFragment")
         // Get a reference to the binding object and inflate the fragment views.
         val binding: FragmentSleepTrackerBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_sleep_tracker, container, false)
@@ -62,7 +65,8 @@ class SleepTrackerFragment : Fragment() {
         binding.setLifecycleOwner(this) // Ch6.2.4 Step 4-1
         binding.sleepTrackerViewModel = sleepTrackerViewModel  // Ch6.2.4 Step 4-2
 
-        sleepTrackerViewModel.navigateToSleepQuality.observe(this, Observer { // Ch6.3.5 Step 2-5, 2-6
+        sleepTrackerViewModel.navigateToSleepQuality.observe(this, Observer {
+            // Ch6.3.5 Step 2-5, 2-6, 一旦觀察到 sleepTrackerViewModel.navigateToSleepQuality有值了,就做換頁的動作,最後再將值清為null值
             night ->
             night?.let {
                 this.findNavController().navigate(
@@ -83,5 +87,10 @@ class SleepTrackerFragment : Fragment() {
             }
         })
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.v(TAG, "create onDestroy SleepTrackerFragment")
     }
 }

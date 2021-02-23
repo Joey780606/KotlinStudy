@@ -17,6 +17,7 @@
 package com.example.android.trackmysleepquality.sleepquality
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.databinding.FragmentSleepQualityBinding
+import com.example.android.trackmysleepquality.sleeptracker.SleepTrackerViewModelFactory
 
 /**
  * Fragment that displays a list of clickable icons,
@@ -36,7 +38,7 @@ import com.example.android.trackmysleepquality.databinding.FragmentSleepQualityB
  * and the database is updated.
  */
 class SleepQualityFragment : Fragment() {
-
+    val TAG = SleepQualityFragment::class.java!!.simpleName
     /**
      * Called when the Fragment is ready to display content to the screen.
      *
@@ -45,6 +47,7 @@ class SleepQualityFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
+        Log.v(TAG, "create SleepQualityFragment")
         // Get a reference to the binding object and inflate the fragment views.
         val binding: FragmentSleepQualityBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_sleep_quality, container, false)
@@ -74,5 +77,10 @@ class SleepQualityFragment : Fragment() {
             }
         })
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.v(TAG, "create onDestroy SleepQualityFragment")
     }
 }

@@ -17,6 +17,7 @@
 package com.example.android.trackmysleepquality.sleeptracker
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
@@ -29,13 +30,18 @@ import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 class SleepTrackerViewModelFactory(
         private val dataSource: SleepDatabaseDao,
         private val application: Application) : ViewModelProvider.Factory {
+
+    val TAG = SleepTrackerViewModelFactory::class.java!!.simpleName
+
     // Ch6.2.4 Step 2 - 跟 SleepTrackerViewModel 相同參數, 且繼承 ViewModelProvider.Factory
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        Log.v(TAG, "create SleepTrackerViewModelFactory")
         // Ch6.2.4 Step 2-2 - 帶任型態的參數,且回傳一個 ViewModel
         if (modelClass.isAssignableFrom(SleepTrackerViewModel::class.java)) {
             // Ch6.2.4 Step 2-3 - 檢查 modelClass 是不是可用的 SleepTrackerViewModel,是就傳回instance,
             //  不是就 throw exception (這是大部分的樣板code,可重複使用)
+            Log.v(TAG, "create SleepTrackerViewModelFactory 2")
             return SleepTrackerViewModel(dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

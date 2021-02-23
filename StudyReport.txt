@@ -134,13 +134,13 @@ Ch5-2-4 Task: Add LiveData to the GameViewModel (極重要)
 Ch5-2-5 Task: Attach observers to the LiveData objects (重要, 5-2-4要升級到此才更有效果)
    1. 關鍵字: viewLifecycleOwner(有介紹,在Activity/Fragment使用),這可以在UI層更方便的observer值的變化,寫更少code
    2. 連接(attach) observer物件到那些LiveData objects
-Ch6-2-6 Task: Encapsulate the LiveData (重要, 目的:保障資料安全性)
+Ch5-2-6 Task: Encapsulate the LiveData (重要, 目的:保障資料安全性)
    1. 關鍵字: MutableLiveData, LiveData, backing property
    2. MutableLiveData : 在此object的資料可改變. 在ViewModel裡面, 資料應能被編輯,就要用 MutableLiveData
    3. LiveData: 在此object的資料只可讀,不能改. 在ViewModel外面,應待合此規定,就要expose為LiveData.
    4. Backing property充許你使用getter的方式取值,而不是透過整個object(為了物件導向的安全性)
    5. 此例程式教導backing property
-Ch6-2-7 Task: Add a game-finished event
+Ch5-2-7 Task: Add a game-finished event
    1. 關鍵字: LiveData observer pattern, observer pattern
    2. 完成遊戲,會自動進到Score頁,而不是使用者要按"End Game" (當做完某些事, ViewModel會與Fragment溝通)
 
@@ -199,8 +199,24 @@ Ch6-2-6 Collect and display the data
    5. res > values > strings.xml. 
    6. SleepTrackerViewModel.kt > Transformations.map(nights) 就是可以把　nights　的型態(資料庫的資料，有多筆，就像array list)來傳換成想要呈現的資料
 　　　7. fragment_sleep_tracker.xml 的 textview 就可以設定文字是　"@{sleepTrackerViewModel.nightsString}"
-　　e. Step 5:
-
+　e. Step 5: Add the click handler for the Stop button
+   1. onStopTracking()的下行, return@launch 在數個巢狀function後,表示為 狀態的return值
+  f. Step 6: Add the click handler for the Clear button: 類似作法
+Ch6-3-1 Use LiveData to control button states
+  參考網址: https://developer.android.com/codelabs/kotlin-android-training-quality-and-states#0
+Ch6-3-2 App overview
+  按 Stop後會跳到sleep-quality screen,選擇好睡眠品質後,畫面結束,資訊更新在畫面中
+Ch6-3-3 Task: Add navigation (重要)
+  a. Step 1 : navigation.xml裡,裡面有 argument 的<> 可以傳送 sleepNightKey (重要)
+  b. Step 2 : 做 Tracker 頁換到 Quality 頁的步驟
+   b2. 項目5, SleepTrackerFragment.kt 需對 _navigateToSleepQuality 值做觀察,所以要加上
+    sleepTrackerViewModel.navigateToSleepQuality.observe(this, Observer 
+      一旦觀察到 sleepTrackerViewModel.navigateToSleepQuality有值了,就做換頁的動作,最後再將值清為null值
+Ch6-3-4 Task: Record the sleep quality (重要)
+  a. Step 3 : 設定 fragment_sleep_quality.xml 與 SleepQualityViewModel 的關係 (使用 <data> </data>)
+Ch6-3-5 Task: Control button visibility and add a snackbar
+  a. Step 1 處理 button 的狀態 (重要)
+  b. Step 2 Snackbar 像是 Toast,顯示在最下面,一下就收回,做相關的設定
 
 [目前會使用到的library]
 1. project-level build.gradle
@@ -242,5 +258,12 @@ dependencies {
 ViewModel若透過 ViewModelProviders 來取得，就不能在View中直接用constructor parameter來傳遞。若需要傳遞參數的話須建立Factory。
 
 ex: 以 TrackMySleepQuality-Starter 專案來看,他們希望 SleepQualityViewModel 是能把 一個Ｌong值和 DatabaseDao帶到新建的資料時，就必要用　SleepTrackerViewModelFactory，以 SleepTrackerFragment 內在建立時帶入．
-　如果不需要參
+
+像這樣:
+val viewModelFactory = SleepTrackerViewModelFactory(dataSource, application) // Ch6.2.4 Step 3-3
+
+val sleepTrackerViewModel = ViewModelProvider(this, viewModelFactory).get(SleepTrackerViewModel::class.java)    // Ch6.2.4 Step 3-4
+  上行有帶 viewModelFactory, 表示 sleepTrackerViewModel 建立時,就會帶入 viewModelFactory 的通知
+
+　如果不需要參數,就不需要 viewModelFactory
 

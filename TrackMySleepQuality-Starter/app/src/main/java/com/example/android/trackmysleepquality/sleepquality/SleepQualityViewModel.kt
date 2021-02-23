@@ -27,7 +27,7 @@ class SleepQualityViewModel(    // Ch6-3-4 Step 1-2, 帶二參數
         private val sleepNightKey: Long = 0L,
         val database: SleepDatabaseDao) : ViewModel() {
 
-    // Ch6-3-4 Step 1-3
+    // Ch6-3-4 Step 1-3, 目的是選完睡眠品質數值後,要能回到 SleepTrackerFragment.kt 裡,所以要設該變數,並依該變數有無值來進行跳頁
     private val _navigateToSleepTracker = MutableLiveData<Boolean?>()
     val navigateToSleepTracker: LiveData<Boolean?>
         get() = _navigateToSleepTracker
@@ -43,6 +43,7 @@ class SleepQualityViewModel(    // Ch6-3-4 Step 1-2, 帶二參數
             database.update(tonight)
 
             // Setting this state variable to true will alert the observer and trigger navigation.
+            // 設此值後, SleepQualityFragment 就會觀察到此值有變化,就會SleepTrackerFragment 頁,且不帶參數
             _navigateToSleepTracker.value = true
         }
     }

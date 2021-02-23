@@ -48,14 +48,17 @@ class SleepTrackerViewModel(
     }
 
     // Ch6-3-5 Step 1-3
+    // 若 tonight 為null, startButtonVisible即為 true
     val startButtonVisible = Transformations.map(tonight) {
         it == null
     }
 
+    // 若 tonight 不為null, stopButtonVisible即為 true
     val stopButtonVisible = Transformations.map(tonight) {
         it != null
     }
 
+    // 若 tonight 不為Empty (isNotEmpty(), clearButtonVisible即為 true
     val clearButtonVisible = Transformations.map(nights) {
         it?.isNotEmpty()
     }
@@ -95,7 +98,7 @@ class SleepTrackerViewModel(
             val oldNight = tonight.value ?: return@launch
             oldNight.endTimeMilli = System.currentTimeMillis()
             update(oldNight)
-            _navigateToSleepQuality.value = oldNight  // Ch6-3-3 Step 2-4
+            _navigateToSleepQuality.value = oldNight  // Ch6-3-3 Step 2-4,把要設定睡眠品質的資料table內的資料放到 _navigateToSleepQuality.value 裡
         }
     }
 
